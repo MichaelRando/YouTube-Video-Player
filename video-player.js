@@ -20,7 +20,7 @@ function onYouTubePlayerAPIReady() {
     ytplayer = new YT.Player('player', {
         height: '390',
         width: '640',
-        videoId: 'uu9J0c97fB0',
+        videoId: 'ylLzyHk54Z0',
         playerVars: { 'autoplay': 1, 'controls': 0 },
         events: {
             'onReady': onPlayerReady,
@@ -43,13 +43,10 @@ function updatePlayerInfo() {
         updateHTML("startBytes", ytplayer.getVideoStartBytes());
         updateHTML("bytesLoaded", ytplayer.getVideoBytesLoaded());
 
-        var sliderWidth = $('#seek_video_slider').width();
         var videoDuration = ytplayer.getDuration();
         var videoCurrent = ytplayer.getCurrentTime();
-        var videoSec = videoDuration / sliderWidth;
-
-        var updatedVideoLen = videoCurrent * videoSec * 100;
-        $('#knob').css('margin-left', '' + updatedVideoLen + '%');
+        var videoPercent  = ((videoCurrent / videoDuration) * 100);
+        $('#knob').css('margin-left', '' + videoPercent + '%');
     }
 }
 
